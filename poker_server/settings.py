@@ -33,7 +33,8 @@ The result is a random and safely hidden `SECRET_KEY`.
 try:
     SECRET_KEY
 except NameError:
-    SECRET_FILE = os.path.join(PROJECT_DIR, 'SECRET_KEY')
+    print('=1=1=1=1' + os.path.join(BASE_DIR, 'SECRET_KEY'))
+    SECRET_FILE = os.path.join(BASE_DIR, 'SECRET_KEY')
     try:
         SECRET_KEY = open(SECRET_FILE).read().strip()
     except IOError:
