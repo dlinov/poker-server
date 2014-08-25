@@ -33,7 +33,6 @@ The result is a random and safely hidden `SECRET_KEY`.
 try:
     SECRET_KEY
 except NameError:
-    print('=1=1=1=1' + os.path.join(BASE_DIR, 'SECRET_KEY'))
     SECRET_FILE = os.path.join(BASE_DIR, 'SECRET_KEY')
     try:
         SECRET_KEY = open(SECRET_FILE).read().strip()
@@ -77,22 +76,24 @@ WSGI_APPLICATION = 'poker_server.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
+DATABASES = {}
 DATABASES['default'] =  dj_database_url.config()
+if len(DATABASES['default'].keys()) == 0:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
+# Change if needed
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
