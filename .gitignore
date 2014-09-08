@@ -47,7 +47,7 @@ coverage.xml
 *.log
 
 # Project specific
-staticfiles
+db
 SECRET_KEY
 
 # Sphinx documentation
