@@ -1,1 +1,1 @@
-web: gunicorn poker_server.wsgi --log-file -
+web: python app.py --port=$PORT
